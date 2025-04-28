@@ -48,7 +48,7 @@ export class RegisterComponent {
   
   
   
-  
+  git remote add origin https://github.com/izbasar2005/angular-server-project.git
   
   
 }
