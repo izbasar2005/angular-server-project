@@ -1,0 +1,49 @@
+<h2>Список пользователей</h2>
+
+<!-- Тек админге ғана қосу мүмкіндігі -->
+<div *ngIf="userRole === 'admin'">
+  <input type="text" [(ngModel)]="currentName" placeholder="Аты" />
+  
+  <!-- Редактировать режиміде рольді өзгерту -->
+  <div *ngIf="!editMode">
+    <input type="email" [(ngModel)]="currentEmail" placeholder="Email" />
+    <input type="password" [(ngModel)]="currentPassword" placeholder="Пароль" />
+    <select [(ngModel)]="currentRole">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+  </div>
+
+  <div *ngIf="editMode">
+    <select [(ngModel)]="currentRole">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+  </div>
+
+  <button (click)="saveUser()">
+    {{ editMode ? 'Сақтау' : 'Қосу' }}
+  </button>
+</div>
+
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.username }} ({{ user.role }})
+    <span *ngIf="userRole === 'admin'">
+      <button (click)="startEdit(user)">✏️</button>
+      <button (click)="deleteUser(user)">🗑️</button>
+    </span>
+  </li>
+</ul>
+
+<br>
+<button (click)="logout()">Выйти</button>
+
+
+
+
+
+
+
+
+
